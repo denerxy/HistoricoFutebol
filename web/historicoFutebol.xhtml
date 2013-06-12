@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="frmCadastroPartida">
+                    <p:panel id="pnlFormulario" header="Cadastro de Partida">
+                        <p:messages autoUpdate="true"/>
+
+                       
+                        *Time 1:
+                        <p:inputText value="#{historicoFutebolController.partida.time1}" required="true" label="Time 1"
+                                     style="width: 400px" validator="#{historicoFutebolController.validarEspacoBranco}">
+                        </p:inputText>
+                        <br/><br/>
+                        
+                        
+
+                        *Time 2:
+                        <p:inputText value="#{historicoFutebolController.partida.time2}" required="true" label="Time 2"
+                                     style="width: 400px" validator="#{historicoFutebolController.validarEspacoBranco}">
+                        </p:inputText>
+                        <br/><br/>
+                        
+                         
+
+
+                        *Estadio:
+                        <p:inputText value="#{historicoFutebolController.partida.estadio}" required="true" label="Estadio"
+                                     style="width: 400px" validator="#{historicoFutebolController.validarEspacoBranco}">
+                        </p:inputText>
+                        <br/><br/>
+
+                         *Campeonato:
+                         <p:inputText value="#{historicoFutebolController.partida.campeonato}" required="true" label="Campeonato"
+                                     style="width: 370px" validator="#{historicoFutebolController.validarEspacoBranco}">
+                        </p:inputText>
+                        <br/><br/>
+
+                        *Data da Partida:
+                        <p:calendar value="#{historicoFutebolController.partida.dataPartida}" required="true" 
+                                    label="Data da Partida" pattern="dd/MM/yyyy HH:mm" locale="pt_BR"/>
+                        <br/><br/>
+
+                        
+
+                        (*) Campos de Preenchimento obrigatório.
+                        <br/><br/>
+
+                        <p:panel id="pnlRodape">
+                            <p:commandButton value="Salvar" update="pnlFormulario" action="#{historicoFutebolController.salvar()}"/>
+                            <p:commandButton value="Limpar" type="reset"/>
+                        </p:panel>
+                    </p:panel>
+                </h:form>  
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

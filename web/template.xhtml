@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Sistema de Historico de partidas de Futebol - Jogos</title>
+    </h:head>
+
+    <h:body>
+
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+        <p:dialog modal="true" widgetVar="statusDialog" header="Carregando..."
+                  draggable="false" closable="false">
+            <p:graphicImage value="./resources/imagem/loading.gif"/>
+        </p:dialog>
+
+
+        <div id="top" class="top">
+            <ui:insert name="top">Sistema - Historico Jogos de Futebol</ui:insert>
+        </div>
+        <div>
+            <div id="left" style="height: 700px;">
+                <ui:insert name="left">
+                    <h:form id="frmMenu">
+
+                        Area do Adminstrador:
+                        <br/><br/>
+
+
+                        <p:commandLink value="Cadastrar Partidas" ajax="false"
+                                       action="#{historicoFutebolController.iniciarTela()}"/><br/><br/>
+
+                        <p:commandLink value="Iniciar Partidas" ajax="false"
+                                       action="#{mostrarPartidasController.mostrarTelaPartidas()}"/><br/><br/>
+                    
+                        
+                        ---------------------------
+                        <br/><br/>
+                        Area do Internauta:
+                        <br/><br/>
+
+                        <p:commandLink value="Partidas do dia" ajax="false"
+                                       action="#{mostrarPartidasController.mostrarTodasPartidas()}"/><br/><br/>
+
+                        <p:commandLink value="Historico de Partidas" ajax="false"
+                                       action="#{mostrarPartidasController.mostrarPartidasEncerradas()}"/><br/><br/>
+
+                        <p:commandLink value="Proximas Partidas" ajax="false"
+                                       action="#{mostrarPartidasController.mostrarProximasPartidas()}"/><br/><br/>
+                        
+                        <p:commandLink value="Partidas em Tempo Real" ajax="false"
+                                       action="#{mostrarPartidasController.mostrarPartidasTempoReal()}"/><br/><br/>
+
+                    </h:form>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content" style="height: 500px;">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

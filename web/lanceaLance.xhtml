@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+
+
+                <h:form>
+                    Placar do Jogo:
+                    <br/><br/>
+                    <h:outputText value="#{lanceaLanceController.partidaSelecionada.time1} " />  
+                    <p:inputText value="#{lanceaLanceController.partidaSelecionada.placar1}" required="true" label="Placar Time 1"
+                                 style="width: 60px">
+                    </p:inputText>
+
+                    X
+
+                    <p:inputText value="#{lanceaLanceController.partidaSelecionada.placar2}" required="true" label="Placar Time 2"
+                                 style="width: 60px" >
+                    </p:inputText>
+                    <h:outputText value=" #{lanceaLanceController.partidaSelecionada.time2}  " /> 
+                                       
+                    <p:commandButton ajax="false" action="#{lanceaLanceController.salvarPlacar()}" value="Salvar Placar"></p:commandButton>
+                    <p:commandButton ajax="false" action="#{lanceaLanceController.finalizarPartida()}" value="Finalizar Partida"></p:commandButton>
+                    <br/><br/>
+                </h:form>
+                                 
+                ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                <br/><br/>
+                Informações da partida: 
+                <br/><br/>
+                <h:form>
+                    
+                     Minutos do jogo:
+                     <p:inputText value="#{lanceaLanceController.novoLance.minutos}" required="true" label="Minutos do jogo:"
+                                 style="width: 70px" validator="#{lanceaLanceController.validarEspacoBranco}">
+                    </p:inputText>
+                    <br/><br/>
+                    
+                    Tempo do jogo (1º 2º):
+                    <p:inputText value="#{lanceaLanceController.novoLance.tempo}" required="true" label="Tempo do jogo (1º 2º)"
+                                 style="width: 70px" validator="#{lanceaLanceController.validarEspacoBranco}">
+                    </p:inputText>
+                    <br/><br/>
+
+                    Mensagem:
+                    <p:inputText value="#{lanceaLanceController.novoLance.mensagemLance}" required="true" label="Mensagem"
+                                 style="width: 750px" validator="#{lanceaLanceController.validarEspacoBranco}">
+                    </p:inputText>
+                    <p:commandButton ajax="false" action="#{lanceaLanceController.salvarLances}" value="Salvar"></p:commandButton>
+                </h:form>
+                 <br/><br/>
+
+                <h:form id="form">  
+
+                    <p:growl id="msgs" showDetail="true" />  
+
+                    <p:dataTable id="Lances" var="Lances" value="#{lanceaLanceController.lancesPartida}">  
+
+                        <p:column headerText="Mensagem" style="width:24%">  
+                            <h:outputText value="#{Lances.mensagemLance}" />  
+                        </p:column>  
+                        
+                         <center> <p:column headerText="Minutos do jogo:)" style="width:7%"> 
+                                 <h:outputText value="#{Lances.minutos}" />  
+                        </p:column> </center>
+                        
+                        <center> <p:column headerText="Tempo do jogo (1º = 1 ou 2º = 2)" style="width:5%"> 
+                            <h:outputText value="#{Lances.tempo}" />  
+                        </p:column> </center>
+           
+
+                    </p:dataTable>  
+
+
+                </h:form>  
+
+                <br/>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

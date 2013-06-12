@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+
+            <ui:define name="content">
+                <h:form>
+                    Placar do Jogo:
+                    <br/><br/>
+                    <h:outputText value="#{lanceaLanceController.partidaSelecionada.time1} " />  
+                    <p:inputText value="#{lanceaLanceController.partidaSelecionada.placar1}" required="true" disabled="true" label="Placar Time 1"
+                                 style="width: 60px">
+                    </p:inputText>
+
+                    X
+
+                    <p:inputText value="#{lanceaLanceController.partidaSelecionada.placar2}" required="true" disabled="true" label="Placar Time 2"
+                                 style="width: 60px" >
+                    </p:inputText>
+                    <h:outputText value=" #{lanceaLanceController.partidaSelecionada.time2}  " /> 
+
+
+                </h:form>
+                <br/><br/>
+
+                ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                <br/><br/>
+
+                <h:form>
+
+                    <p:commandButton ajax="false" action="#{lanceaLanceController.mostrarLanceInternauta()}" value="Atualizar Lances"></p:commandButton>
+                </h:form>
+                <br/><br/>
+
+                <h:form id="form">  
+
+                    <p:growl id="msgs" showDetail="true" />  
+
+                    <p:dataTable id="Lances" var="Lances" value="#{lanceaLanceController.lancesPartida}">  
+
+                        <p:column headerText="Mensagem" style="width:24%">  
+                            <h:outputText value="#{Lances.mensagemLance}" />  
+                        </p:column>  
+
+                        <center> <p:column headerText="Minutos do jogo:)" style="width:7%"> 
+                                <h:outputText value="#{Lances.minutos}" />  
+                            </p:column> </center>
+
+                        <center> <p:column headerText="Tempo do jogo (1º = 1 ou 2º = 2)" style="width:5%"> 
+                                <h:outputText value="#{Lances.tempo}" />  
+                            </p:column> </center>
+
+
+                    </p:dataTable>  
+
+
+                </h:form>  
+
+                <br/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

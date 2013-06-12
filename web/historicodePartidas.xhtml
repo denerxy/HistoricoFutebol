@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <h:form id="form">  
+                    
+                    Legenda do Status da partida:
+                    <br/><br/>
+                    0 - Partida que irá acontecer
+                    <br/>
+                    1 - Partida Iniciada
+                    <br/>
+                    2 - Partida Encerrada
+                    <br/><br/>
+
+                    <p:growl id="msgs" showDetail="true" />  
+
+                    <p:dataTable id="Partidas" var="Partidas" value="#{mostrarPartidasController.partidas}">  
+
+                        <p:column headerText="Time 1" style="width:24%">  
+                            <h:outputText value="#{Partidas.time1}" />  
+                        </p:column>  
+
+                        <p:column headerText="Contra" style="width:5%">  
+                            <center>   <h:outputText value=" X " /> </center>
+                        </p:column>  
+
+                        <p:column headerText="Time 2" style="width:24%">  
+                            <h:outputText value="#{Partidas.time2}" />  
+                        </p:column> 
+
+                        <p:column headerText="Campeonato" style="width:20%">  
+                            <h:outputText value="#{Partidas.campeonato}" />  
+                        </p:column> 
+
+                        <p:column headerText="Estadio" style="width:20%">  
+                            <h:outputText value="#{Partidas.estadio}" />  
+                        </p:column> 
+
+                        <p:column headerText="Data e Hora da Partida" style="width:24%">  
+                            <h:outputText value="#{Partidas.dataPartida.toLocaleString()}" />                              
+                        </p:column> 
+
+                        <p:column headerText="Status Partida" style="width:10%">  
+                            <center><h:outputText value="#{Partidas.status}" /></center> 
+                        </p:column>
+
+                     </p:dataTable>  
+
+
+                </h:form>  
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
